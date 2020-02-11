@@ -12,7 +12,7 @@ public class Calculator {
         for (int i = 0; i < opers.size(); i++) {
             int num = nums.get(i + 1);
             String oper = opers.get(i);
-            answer = Operator.startCalculate(oper).calculate(answer, num);
+            answer = Operator.getOperatorMapper(oper).calculate(answer, num);
         }
         return answer;
     }

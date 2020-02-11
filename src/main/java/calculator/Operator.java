@@ -30,13 +30,13 @@ public enum Operator {
         }
     };
 
-    private static Map<String, Operator> cal = new HashMap<>();
+    private static Map<String, Operator> operatorMapper = new HashMap<>();
     private String operation;
     static {
-        cal.put("+", Operator.PLUS);
-        cal.put("-", Operator.MINUS);
-        cal.put("*", Operator.MULTIPLY);
-        cal.put("/", Operator.DIVIDE);
+        operatorMapper.put("+", Operator.PLUS);
+        operatorMapper.put("-", Operator.MINUS);
+        operatorMapper.put("*", Operator.MULTIPLY);
+        operatorMapper.put("/", Operator.DIVIDE);
     }
 
     Operator(String operation) {
@@ -51,7 +51,7 @@ public enum Operator {
 
     public abstract int calculate(int a, int b);
 
-    public static Operator startCalculate(String oper) {
-        return cal.get(oper);
+    public static Operator getOperatorMapper(String oper) {
+        return operatorMapper.get(oper);
     }
 }
