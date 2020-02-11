@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -31,24 +32,21 @@ public enum Operator {
 
     private static Map<String, Operator> cal = new HashMap<>();
     private String operation;
-
-    Operator(String operation) {
-        this.operation = operation;
-    }
-
-    public static void init() {
+    static {
         cal.put("+", Operator.PLUS);
         cal.put("-", Operator.MINUS);
         cal.put("*", Operator.MULTIPLY);
         cal.put("/", Operator.DIVIDE);
     }
 
+    Operator(String operation) {
+        this.operation = operation;
+    }
+
     public static boolean isValidOperator(String oper) {
-        boolean status = false;
-        for (Operator operator : Operator.values()) {
-            status = status || operator.operation.contains(oper);
-        }
-        return status;
+        return Arrays.stream(Operator.values())
+                .map(o -> o.operation)
+                .anyMatch(o -> o.equals(oper));
     }
 
     public abstract int calculate(int a, int b);

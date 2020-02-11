@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Calculator {
     public int runCalculator(List<Integer> nums, List<String> opers) throws ArithmeticException {
-        Operator.init();
         return calculate(nums, opers);
     }
 
