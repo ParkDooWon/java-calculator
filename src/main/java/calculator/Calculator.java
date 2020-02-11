@@ -3,7 +3,7 @@ package calculator;
 import java.util.List;
 
 public class Calculator {
-    public int runCalculator(List<Integer> nums, List<String> opers) throws ArithmeticException {
+    public int runCalculator(List<Integer> nums, List<String> opers) throws ArithmeticException, NullPointerException {
         return calculate(nums, opers);
     }
 

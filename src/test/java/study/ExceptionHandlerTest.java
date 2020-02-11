@@ -12,11 +12,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ExceptionHandlerTest {
-    private static final String NUMBER_PATTERN = "^[0-9]*$";
-    private static final String OPERATION_PATTERN = "^[+\\-\\*/]$";
-
     @Test
     @DisplayName("Test isNumber method")
     public void isNumberTest() {
@@ -32,17 +30,42 @@ public class ExceptionHandlerTest {
 
     @Test
     @DisplayName("Test isValidOperator method")
-    public void isValidOperaterTest() {
-        List<String> opers = Arrays.asList("+", "-", "*", "/");
-        assertThat(ExceptionHandler.isValidOperator(opers)).isTrue();
-        opers = Arrays.asList("a", "b", "c", "d");
-        assertThat(ExceptionHandler.isValidOperator(opers)).isFalse();
-        opers = Arrays.asList("1", "2", "3", "4");
-        assertThat(ExceptionHandler.isValidOperator(opers)).isFalse();
-        opers = Arrays.asList("++", "--", "**", "//");
-        assertThat(ExceptionHandler.isValidOperator(opers)).isFalse();
-        opers = Arrays.asList("+1", "2-", "*3", "/4/");
-        assertThat(ExceptionHandler.isValidOperator(opers)).isFalse();
+    public void 사칙연산_외의_다른_문자가_들어온_경우_예외처리1() {
+        List<String> opers = Arrays.asList("++", "--", "**", "//");
+        List<String> finalOpers = opers;
+        assertThatThrownBy(() -> {
+            ExceptionHandler.isValidOperator(finalOpers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Test isValidOperator method")
+    public void 사칙연산_외의_다른_문자가_들어온_경우_예외처리2() {
+        List<String> opers = Arrays.asList("a", "b", "c", "d");
+        List<String> finalOpers = opers;
+        assertThatThrownBy(() -> {
+            ExceptionHandler.isValidOperator(finalOpers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Test isValidOperator method")
+    public void 사칙연산_외의_다른_문자가_들어온_경우_예외처리3() {
+        List<String> opers = Arrays.asList("1", "2", "3", "4");
+        List<String> finalOpers = opers;
+        assertThatThrownBy(() -> {
+            ExceptionHandler.isValidOperator(finalOpers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Test isValidOperator method")
+    public void 사칙연산_외의_다른_문자가_들어온_경우_예외처리4() {
+        List<String> opers = Arrays.asList("+1", "2-", "*3", "/4/");
+        List<String> finalOpers = opers;
+        assertThatThrownBy(() -> {
+            ExceptionHandler.isValidOperator(finalOpers);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest

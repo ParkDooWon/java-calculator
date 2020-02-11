@@ -29,9 +29,11 @@ public class Input {
             System.out.println("not numbers");
             return inputValue();
         }
-        if (!exceptionHandler.isValidOperator(opers)) {
-            System.out.println("not operations");
-            return inputValue();
+        try {
+            exceptionHandler.isValidOperator(opers);
+        } catch (IllegalArgumentException e) {
+            System.out.println("not valid operators");
+            inputValue();
         }
         expressions.add(nums);
         expressions.add(opers);

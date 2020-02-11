@@ -16,12 +16,9 @@ public class ExceptionHandler {
         return check;
     }
 
-    public static boolean isValidOperator(List<String> opers) {
-        boolean check = true;
-        for (String oper : opers) {
-            check = check && Operator.isValidOperator(oper);
-        }
-        return check;
+    public static void isValidOperator(List<String> opers) throws IllegalArgumentException {
+        opers.stream()
+                .forEach(Operator::isValidOperator);
     }
 
     public static boolean isMatchNumber(String target) {

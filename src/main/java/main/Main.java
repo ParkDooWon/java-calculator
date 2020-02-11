@@ -11,6 +11,7 @@ public class Main {
     private static final int NUMS = 0;
     private static final int OPERS = 1;
     private static final String ERR_CANT_DIVIDE_BY_ZERO = "0으로 나눌 수 없습니다.";
+    public static final String ERR_GET_NULL_POINTER = "NULL 값이 입력되었습니다.";
     private static List<List> expressions = new ArrayList<>();
     private static Calculator calculator = new Calculator();
 
@@ -24,6 +25,8 @@ public class Main {
             System.out.println(calculator.runCalculator(nums, opers));
         } catch (ArithmeticException e) {
             System.err.println(ERR_CANT_DIVIDE_BY_ZERO);
+        } catch (NullPointerException e) {
+            System.err.println(ERR_GET_NULL_POINTER);
         }
     }
 

@@ -43,10 +43,12 @@ public enum Operator {
         this.operation = operation;
     }
 
-    public static boolean isValidOperator(String oper) {
-        return Arrays.stream(Operator.values())
+    public static void isValidOperator(String oper) throws IllegalArgumentException {
+        if (!Arrays.stream(Operator.values())
                 .map(o -> o.operation)
-                .anyMatch(o -> o.equals(oper));
+                .anyMatch(o -> o.equals(oper))) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public abstract int calculate(int a, int b);
