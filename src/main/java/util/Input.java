@@ -28,7 +28,8 @@ public class Input {
         if (!exceptionHandler.isNumber(nums)) {
             System.out.println("not numbers");
             return inputValue();
-        } else if (!exceptionHandler.isValidOperator(opers)) {
+        }
+        if (!exceptionHandler.isValidOperator(opers)) {
             System.out.println("not operations");
             return inputValue();
         }
@@ -40,7 +41,8 @@ public class Input {
     private static void separateValues(int idx, List<String> nums, List<String> opers) {
         if (idx % 2 == NUMBER) {
             nums.add(valueMembers[idx]);
-        } else if (idx % 2 == OPERATION) {
+        }
+        if (idx % 2 == OPERATION) {
             opers.add(valueMembers[idx]);
         }
     }
